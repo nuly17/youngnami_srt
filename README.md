@@ -1,5 +1,3 @@
-# youngnami_srt
-
 # Python program for booking SRT ticket.
 
 매진된 SRT 표의 예매를 도와주는 파이썬 프로그램입니다.  
@@ -8,7 +6,7 @@ https://github.com/kminito/srt_reservation 소스코드를 수정하였습니다
 
 ## 다운
 ```cmd
-git clone https://github.com/kminito/srt_reservation.git
+git clone https://github.com/nuly17/youngnami_srt.git
 ```
   
 ## 필요
