@@ -19,7 +19,7 @@ def call_slack(msg):
 
 
 def open_brower():
-    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+    driver = webdriver.Chrome() #service=ChromeService(ChromeDriverManager().install()))
     return driver
 
 
@@ -95,5 +95,5 @@ def search_train(driver, dpt_stn, arr_stn, dpt_dt, dpt_tm, num_trains_to_check=2
 
 if __name__ == "__main__":
     driver = open_brower()
-    driver = login(driver, '11111111', '22222222') # 회원 번호, 비밀번호
-    search_train(driver, "동대구", "수서", "20240612", "06", num_trains_to_check=2, want_reserve=False) #기차 출발 시간은 반드시 짝수
+    driver = login(driver, '1111', '2222!') # 회원 번호, 비밀번호
+    search_train(driver, "동대구", "수서", "20240617", "06", num_trains_to_check=1, want_reserve=False) #기차 출발 시간은 반드시 짝수
