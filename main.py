@@ -30,8 +30,8 @@ def parse_cli_args():
     parser.add_argument("--dt", help="Departure Date", type=str, metavar="20220118")
     parser.add_argument("--tm", help="Departure Time", type=str, metavar="08, 10, 12, ...")
 
-    parser.add_argument("--slacktoken", help="Slack Token Information", type=str, metavar="333333")
-    parser.add_argument("--slackch", help="Slack Channel Information", type=str, metavar="C077D1XSB2A")
+    parser.add_argument("--slack_tk", help="Slack Token Information", type=str, metavar="333333")
+    parser.add_argument("--slack_ch", help="Slack Channel Information", type=str, metavar="C077D1XSB2A")
     
     parser.add_argument("--num", help="no of trains to check", type=int, metavar="2", default=2)
     parser.add_argument("--reserve", help="Reserve or not", type=bool, metavar="2", default=False)
