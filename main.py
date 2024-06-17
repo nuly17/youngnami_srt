@@ -24,16 +24,17 @@ def parse_cli_args():
 
     parser.add_argument("--user", help="Username", type=str, metavar="1234567890")
     parser.add_argument("--psw", help="Password", type=str, metavar="abc1234")
+    
     parser.add_argument("--dpt", help="Departure Station", type=str, metavar="동탄")
     parser.add_argument("--arr", help="Arrival Station", type=str, metavar="동대구")
     parser.add_argument("--dt", help="Departure Date", type=str, metavar="20220118")
     parser.add_argument("--tm", help="Departure Time", type=str, metavar="08, 10, 12, ...")
 
-    parser.add_argument("--num", help="no of trains to check", type=int, metavar="2", default=2)
-    parser.add_argument("--reserve", help="Reserve or not", type=bool, metavar="2", default=False)
-
     parser.add_argument("--slacktoken", help="Slack Token Information", type=str, metavar="333333")
     parser.add_argument("--slackch", help="Slack Channel Information", type=str, metavar="C077D1XSB2A")
+    
+    parser.add_argument("--num", help="no of trains to check", type=int, metavar="2", default=2)
+    parser.add_argument("--reserve", help="Reserve or not", type=bool, metavar="2", default=False)
 
     args = parser.parse_args()
 
@@ -54,7 +55,7 @@ def login(driver, login_id, login_psw):
     return driver
 
 
-def search_train(driver, dpt_stn, arr_stn, dpt_dt, dpt_tm, num_trains_to_check=2, want_reserve=False, slack_tk, slack_ch):
+def search_train(driver, dpt_stn, arr_stn, dpt_dt, dpt_tm, slack_tk, slack_ch, num_trains_to_check=2, want_reserve=False):
     is_booked = False # 예약 완료 되었는지 확인용
     cnt_refresh = 0 # 새로고침 회수 기록
 
@@ -125,16 +126,16 @@ if __name__ == "__main__":
     arr_stn = cli_args.arr
     dpt_dt = cli_args.dt
     dpt_tm = cli_args.tm
-
-    num_trains_to_check = cli_args.num
-    want_reserve = cli_args.reserve
     
     slack_tk = cli_args.slack_tk
     slack_ch = cli_args.slack_ch
+
+    num_trains_to_check = cli_args.num
+    want_reserve = cli_args.reserve
 
     #srt = SRT(dpt_stn, arr_stn, dpt_dt, dpt_tm, num_trains_to_check, want_reserve)
     #srt.run(login_id, login_psw)
     
     driver = open_brower()
     driver = login(driver, login_id, login_psw) # 회원 번호, 비밀번호
-    search_train(driver, dpt_stn, arr_stn, dpt_dt, dpt_tm, num_trains_to_check=1, want_reserve=False, slack_tk, slack_ch) #기차 출발 시간은 반드시 짝수
+    search_train(driver, dpt_stn, arr_stn, dpt_dt, dpt_tm, slack_tk, slack_ch, num_trains_to_check=1, want_reserve=False) #기차 출발 시간은 반드시 짝수
