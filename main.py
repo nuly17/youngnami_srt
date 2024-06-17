@@ -6,13 +6,13 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 import argparse
 
-def call_slack(msg):
-    slack_token = "333333"
+def call_slack(slack_token, channel, msg):
+    #slack_token = "333333"
     client = WebClient(token=slack_token)
     
     try:
         response = client.chat_postMessage(
-            channel="C077D1XSB2A", #채널 id를 입력합니다.
+            #channel="C077D1XSB2A", #채널 id를 입력합니다.
             text=msg
         )
     except SlackApiError as e:
@@ -54,7 +54,7 @@ def login(driver, login_id, login_psw):
     return driver
 
 
-def search_train(driver, dpt_stn, arr_stn, dpt_dt, dpt_tm, num_trains_to_check=2, want_reserve=False):
+def search_train(driver, dpt_stn, arr_stn, dpt_dt, dpt_tm, num_trains_to_check=2, want_reserve=False, slack_tk, slack_ch):
     is_booked = False # 예약 완료 되었는지 확인용
     cnt_refresh = 0 # 새로고침 회수 기록
 
@@ -93,7 +93,7 @@ def search_train(driver, dpt_stn, arr_stn, dpt_dt, dpt_tm, num_trains_to_check=2
                 if driver.find_elements(By.ID, 'isFalseGotoMain'):
                     is_booked = True
                     print("예약 성공")
-                    #call_slack("예약 성공")
+                    #call_slack(slack_tk, slack_ch, "예약 성공")
                     break
                 else:
                     print("잔여석 없음. 다시 검색")
@@ -137,4 +137,4 @@ if __name__ == "__main__":
     
     driver = open_brower()
     driver = login(driver, login_id, login_psw) # 회원 번호, 비밀번호
-    search_train(driver, dpt_stn, arr_stn, dpt_dt, dpt_tm, num_trains_to_check=1, want_reserve=False) #기차 출발 시간은 반드시 짝수
+    search_train(driver, dpt_stn, arr_stn, dpt_dt, dpt_tm, num_trains_to_check=1, want_reserve=False, slack_tk, slack_ch) #기차 출발 시간은 반드시 짝수
