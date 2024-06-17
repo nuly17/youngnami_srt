@@ -32,6 +32,9 @@ def parse_cli_args():
     parser.add_argument("--num", help="no of trains to check", type=int, metavar="2", default=2)
     parser.add_argument("--reserve", help="Reserve or not", type=bool, metavar="2", default=False)
 
+    parser.add_argument("--slacktoken", help="Slack Token Information", type=str, metavar="333333")
+    parser.add_argument("--slackch", help="Slack Channel Information", type=str, metavar="C077D1XSB2A")
+
     args = parser.parse_args()
 
     return args
@@ -125,12 +128,13 @@ if __name__ == "__main__":
 
     num_trains_to_check = cli_args.num
     want_reserve = cli_args.reserve
+    
+    slack_tk = cli_args.slack_tk
+    slack_ch = cli_args.slack_ch
 
     #srt = SRT(dpt_stn, arr_stn, dpt_dt, dpt_tm, num_trains_to_check, want_reserve)
     #srt.run(login_id, login_psw)
     
     driver = open_brower()
-    #driver = login(driver, '1590737365', 'gh17742605!') # 회원 번호, 비밀번호
     driver = login(driver, login_id, login_psw) # 회원 번호, 비밀번호
-    #search_train(driver, "동대구", "수서", "20240617", "06", num_trains_to_check=1, want_reserve=False) #기차 출발 시간은 반드시 짝수
     search_train(driver, dpt_stn, arr_stn, dpt_dt, dpt_tm, num_trains_to_check=1, want_reserve=False) #기차 출발 시간은 반드시 짝수
