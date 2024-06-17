@@ -42,18 +42,18 @@ pip install -r requirements.txt
 검색 결과 중 상위 2개가 예약 가능할 경우 예약
 
 ```cmd
-python quickstart.py --user 1234567890 --psw 000000 --dpt 동대구 --arr 수서 --dt 20240612 --tm 06
+python main.py --user 1234567890 --psw 000000 --dpt 동대구 --arr 수서 --dt 20240612 --tm 06
 ```
 
 **Optional 1**  
 예약대기 사용 및 검색 결과 상위 3개의 예약 가능 여부 확인
 ```cmd
-python quickstart.py --user 1234567890 --psw 000000 --dpt 동대구 --arr 수서 --dt 20240612 --tm 06 --num 3 --reserve True
+python main.py --user 1234567890 --psw 000000 --dpt 동대구 --arr 수서 --dt 20240612 --tm 06 --num 3 --reserve True
 ```
 **Optional 2**  
 예약 성공 시 slack으로 통보 받기
 ```cmd
-python quickstart.py --user 1234567890 --psw 000000 --dpt 동대구 --arr 수서 --dt 20240612 --tm 06 --num 3 --slack True --slack_token 1111 --slack_ch 2222
+python main.py --user 1234567890 --psw 000000 --dpt 동대구 --arr 수서 --dt 20240612 --tm 06 --num 3 --slack True --slack_token 1111 --slack_ch 2222
 ```
 
 **실행 결과**
